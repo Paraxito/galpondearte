@@ -1,0 +1,863 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerámica Artesanal | Catálogo de Artistas</title>
+    
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Catálogo de cerámica artesanal de artistas locales. Piezas únicas, tazas, jarrones y decoración hecha a mano.">
+    <meta property="og:title" content="Cerámica Artesanal - Catálogo">
+    <meta property="og:description" content="Explorá obras de ceramistas locales. Consultá por WhatsApp.">
+    <meta property="og:image" content="https://placehold.co/1200x630/EDE4D3/4A3728?text=Ceramica+Artesanal">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏺</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* VARIABLES & RESET */
+
+        :root {
+            --bg-main: #F5EFE6;
+            --bg-card: #EDE4D3;
+            --text-dark: #4A3728;
+            --accent-brown: #8B6B4A;
+            --accent-blue: #3F5F7A;
+            --accent-blue-hover: #2F4B63;
+            --border-gray: #A9BAC6;
+            --white-bone: #FBF8F3;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+            --shadow: 0 4px 6px -1px rgba(74, 55, 40, 0.05), 0 2px 4px -1px rgba(74, 55, 40, 0.03);
+            --radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 700; color: var(--text-dark); }
+        h1 { font-size: 3.5rem; line-height: 1.1; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; }
+        
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        
+        button { cursor: pointer; border: none; font-family: var(--font-sans); transition: all 0.3s ease; }
+
+        /* UTILITIES */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 0; }
+        .text-center { text-align: center; }
+        .grid { display: grid; gap: 2rem; }
+        .flex { display: flex; align-items: center; }
+        .hidden { display: none !important; }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        
+        .btn-primary { background-color: var(--accent-blue); color: white; }
+        .btn-primary:hover { background-color: var(--accent-blue-hover); transform: translateY(-2px); }
+        
+        .btn-secondary { background-color: transparent; border: 2px solid var(--accent-brown); color: var(--accent-brown); }
+        .btn-secondary:hover { background-color: var(--accent-brown); color: white; }
+
+        .btn-whatsapp { background-color: #25D366; color: white; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-whatsapp:hover { background-color: #1ebc57; }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background-color: rgba(245, 239, 230, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 1px 0 rgba(74, 55, 40, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .nav-container { justify-content: space-between; }
+        .logo { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; color: var(--text-dark); }
+        
+        .nav-menu { gap: 2rem; }
+        .nav-link { font-weight: 500; color: var(--text-dark); position: relative; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--accent-blue); transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+
+        .hamburger { display: none; background: none; font-size: 1.5rem; color: var(--text-dark); }
+
+        /* HERO */
+        #inicio {
+            height: 35vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: linear-gradient(rgba(245, 239, 230, 0.8), rgba(245, 239, 230, 0.8));
+            background-size: cover;
+            background-position: center;
+            margin-top: 60px;
+            padding-bottom: 2px;  /* Disminuye el espaciado interno inferior */
+  margin-bottom: 2px;   /* Disminuye el margen exterior hacia "Nuestros Artistas" */
+        }
+        .hero-content { max-width: 800px; animation: fadeIn 1s ease-out; }
+        .hero-btns { gap: 1rem; margin-top: 1rem; display: flex; justify-content: center; flex-wrap: wrap; }
+
+        /* ARTISTS */
+        .artist-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+        .artist-card:hover { transform: translateY(-5px); }
+        .artist-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .artist-info { padding: 1.5rem; }
+        .artist-loc { font-size: 0.9rem; color: var(--accent-brown); margin-bottom: 1rem; display: block; }
+
+        /* PROFILE VIEW */
+        .profile-header {
+            background-color: var(--bg-card);
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+        .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+        .profile-img { border-radius: var(--radius); width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .profile-details h2 { margin-bottom: 0.5rem; }
+        .social-links { margin-top: 1.5rem; display: flex; gap: 1rem; }
+        .social-btn { padding: 0.5rem 1rem; border: 1px solid var(--border-gray); border-radius: 4px; font-size: 0.8rem; }
+
+        /* CATALOG */
+        .filters-bar {
+            background-color: var(--white-bone);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .search-input, .select-filter {
+            padding: 0.8rem;
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            background: transparent;
+            font-family: var(--font-sans);
+        }
+        .search-input { width: 100%; min-width: 200px; }
+        
+        .product-card {
+            background-color: var(--white-bone);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        .product-card:hover { box-shadow: 0 10px 15px -3px rgba(74, 55, 40, 0.1); }
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+        .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .product-card:hover .product-img { transform: scale(1.05); }
+        
+        .badge {
+            position: absolute; top: 10px; left: 10px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            z-index: 2;
+        }
+        .badge-unique { background-color: var(--accent-blue); }
+        .badge-sold { background-color: var(--text-dark); }
+        
+        .product-info { padding: 1rem; }
+        .product-title { font-weight: 600; margin-bottom: 0.3rem; }
+        .product-price { color: var(--accent-brown); font-weight: 700; font-size: 1.1rem; }
+        .product-artist { font-size: 0.85rem; color: #666; margin-top: 0.2rem; }
+
+        /* MODAL */
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(74, 55, 40, 0.6);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .modal.active { display: flex; opacity: 1; }
+        .modal-content {
+            background: var(--white-bone);
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: var(--radius);
+            overflow-y: auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .modal-close {
+            position: absolute; top: 1rem; right: 1rem;
+            background: white; width: 40px; height: 40px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; z-index: 10; box-shadow: var(--shadow);
+        }
+        .modal-img { width: 100%; height: 100%; object-fit: cover; min-height: 400px; }
+        .modal-details { padding: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+        .detail-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.5rem; }
+        .detail-label { font-weight: 600; color: var(--accent-brown); }
+
+        /* SECTIONS */
+        .values-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); text-align: center; gap: 3rem; }
+        .value-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent-blue); }
+        
+        .steps-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; counter-reset: step; }
+        .step-card { position: relative; padding: 2rem; background: var(--bg-card); border-radius: var(--radius); text-align: center; }
+        .step-card::before {
+            content: counter(step); counter-increment: step;
+            position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+            width: 40px; height: 40px; background: var(--accent-blue); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;
+        }
+
+        .contact-form { max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 2rem; border-radius: var(--radius); }
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-input, .form-textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--border-gray); border-radius: 6px; font-family: var(--font-sans); }
+        .form-textarea { resize: vertical; min-height: 100px; }
+
+        .join-cta { margin-top: 4rem; padding: 3rem; background: var(--accent-blue); color: white; border-radius: var(--radius); text-align: center; }
+        .join-cta h3 { color: white; margin-bottom: 1rem; }
+        .join-cta .btn { background: white; color: var(--accent-blue); }
+
+        /* FOOTER */
+        footer { background-color: var(--text-dark); color: var(--bg-card); padding: 3rem 0; margin-top: 4rem; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+        .social-icons a { margin-left: 1rem; font-size: 1.2rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .hamburger { display: block; }
+            .nav-menu {
+                position: fixed; top: 70px; left: 0; right: 0;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active { transform: translateY(0); }
+            
+            .profile-grid { grid-template-columns: 1fr; }
+            .modal-content { grid-template-columns: 1fr; }
+            .modal-img { height: 300px; }
+            
+            .filters-bar { flex-direction: column; align-items: stretch; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container flex">
+            <a href="#" class="logo" onclick="app.goHome()">Atelier</a>
+            <button class="hamburger" aria-label="Menú">☰</button>
+            <ul class="nav-menu flex">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#artistas" class="nav-link">Artistas</a></li>
+                <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+                <li><a href="#sobre-nosotros" class="nav-link">Sobre nosotros</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO -->
+        <section id="inicio" class="section">
+            <div class="hero-content container">
+                <h1>Catalogo de pequeños artistas, grandes trabajos</h1>
+                <p style="font-size: 1rem; margin: 1.5rem 0; color: var(--text-dark);">Cerámica artesanal hecha a mano por artistas locales.</p>
+                <div class="hero-btns">
+                    <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+                    <a href="#artistas" class="btn btn-secondary">Conocer artistas</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARTISTAS (Grid) -->
+        <section id="artistas" class="section container">
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <h2>Nuestros Artistas</h2>
+                <p>Conocé a quienes dan vida a la arcilla.</p>
+            </div>
+            <div id="artists-grid" class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <!-- JS Injected -->
+            </div>
+        </section>
+
+        <!-- PERFIL DE ARTISTA (Hidden by default) -->
+        <section id="artist-profile" class="hidden">
+            <div class="profile-header">
+                <div class="container">
+                    <button onclick="app.goHome()" class="btn btn-secondary" style="margin-bottom: 2rem;">← Volver a artistas</button>
+                    <div class="profile-grid">
+                        <img id="profile-img" src="" alt="Artista" class="profile-img">
+                        <div class="profile-details">
+                            <h2 id="profile-name">Nombre Artista</h2>
+                            <span id="profile-loc" style="color: var(--accent-brown); font-weight: 600;">Ciudad</span>
+                            <p id="profile-bio" style="margin-top: 1rem;">Biografía...</p>
+                            <div class="social-links">
+                                <a id="profile-social" href="#" target="_blank" class="social-btn">Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container section">
+                <h3 class="text-center" style="margin-bottom: 2rem;">Obras de este artista</h3>
+                <div id="artist-works-grid" class="grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                    <!-- JS Injected -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO GENERAL -->
+        <section id="catalogo" class="section container">
+            <div class="text-center" style="margin-bottom: 2rem;">
+                <h2>Catálogo General</h2>
+                <p>Explorá todas las piezas disponibles.</p>
+            </div>
+            
+            <div class="filters-bar">
+                <input type="text" id="search-input" class="search-input" placeholder="Buscar pieza...">
+                
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <select id="filter-artist" class="select-filter">
+                        <option value="all">Todos los artistas</option>
+                        <!-- JS Injected -->
+                    </select>
+                    
+                    <select id="filter-category" class="select-filter">
+                        <option value="all">Todas las categorías</option>
+                        <option value="Tazas">Tazas</option>
+                        <option value="Platos">Platos</option>
+                        <option value="Jarrones">Jarrones</option>
+                        <option value="Macetas">Macetas</option>
+                        <option value="Decoración">Decoración</option>
+                        <option value="Sets">Sets</option>
+                    </select>
+
+                    <select id="sort-price" class="select-filter">
+                        <option value="default">Ordenar por</option>
+                        <option value="asc">Precio: Menor a Mayor</option>
+                        <option value="desc">Precio: Mayor a Menor</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="catalog-grid" class="grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                <!-- JS Injected -->
+            </div>
+            
+            <div id="no-results" class="hidden text-center" style="padding: 3rem;">
+                <h3>No se encontraron piezas</h3>
+                <p>Intentá con otros filtros o escribinos para consultar disponibilidad.</p>
+            </div>
+        </section>
+
+        <!-- SOBRE NOSOTROS -->
+        <section id="sobre-nosotros" class="section" style="background-color: var(--bg-card);">
+            <div class="container">
+                <div class="text-center" style="max-width: 700px; margin: 0 auto 3rem auto;">
+                    <h2>Sobre el proyecto</h2>
+                    <p>Amor por lo hecho a mano. Somos un espacio dedicado a visibilizar el trabajo de ceramistas locales, conectando piezas únicas con personas que valoran la calidez y la estética natural.</p>
+                </div>
+                <div class="values-grid grid">
+                    <div>
+                        <div class="value-icon">O</div>
+                        <h3>Hecho a Mano</h3>
+                        <p>Cada pieza es única, con su propia estetica, texturas y detalles.</p>
+                    </div>
+                    <div>
+                        <div class="value-icon">O</div>
+                        <h3>Producción Local</h3>
+                        <p>Apoyamos la economía de nuestros artistas y acercamos su trabajo a mas personas.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- CÓMO COMPRAR -->
+        <section id="como-comprar" class="section container">
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <h2>Cómo comprar</h2>
+            </div>
+            <div class="steps-grid grid">
+                <div class="step-card">
+                    <h3>1. Elegí</h3>
+                    <p>Explorá el catálogo y encontrá tu pieza favorita.</p>
+                </div>
+                <div class="step-card">
+                    <h3>2. Consultá</h3>
+                    <p>Hacé clic en "Consultar por WhatsApp" para confirmar disponibilidad y detalles.</p>
+                </div>
+                <div class="step-card">
+                    <h3>3. Coordiná</h3>
+                    <p>Acordamos el pago y el envío o retiro en persona.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto" class="section" style="background-color: var(--white-bone);">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 3rem;">
+                    <h2>Contacto</h2>
+                    <p>Estamos para responder tus dudas.</p>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" id="contact-name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mensaje</label>
+                            <textarea id="contact-message" class="form-textarea" placeholder="Hola! Me gustaría saber más sobre..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-whatsapp" style="width: 100%; justify-content: center;">
+                            Enviar por WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <h3>Atelier</h3>
+                <p>© <span id="year"></span> Todos los derechos reservados.</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="WhatsApp">💬</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DETALLE PIEZA -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="app.closeModal()">×</button>
+            <img id="modal-img" src="" alt="Pieza" class="modal-img">
+            <div class="modal-details">
+                <span id="modal-category" style="text-transform: uppercase; color: var(--accent-brown); font-size: 0.8rem; letter-spacing: 1px;">Categoría</span>
+                <h2 id="modal-title">Nombre Pieza</h2>
+                <h3 id="modal-price" style="color: var(--accent-blue);">$0.000</h3>
+                
+                <p id="modal-desc">Descripción detallada...</p>
+                
+                <div style="margin-top: 1rem;">
+                    <div class="detail-row"><span class="detail-label">Medidas:</span> <span id="modal-measures">00x00cm</span></div>
+                    <div class="detail-row"><span class="detail-label">Materiales:</span> <span id="modal-materials">Arcilla</span></div>
+                    <div class="detail-row"><span class="detail-label">Cuidados:</span> <span id="modal-care">Lavavajillas Sí</span></div>
+                    <div class="detail-row"><span class="detail-label">Estado:</span> <span id="modal-stock">Disponible</span></div>
+                </div>
+
+                <a id="modal-wa-link" href="#" target="_blank" class="btn btn-whatsapp" style="margin-top: 1.5rem; justify-content: center;">
+                    Consultar por esta pieza
+                </a>
+                
+                <div style="margin-top: 1rem; text-align: center;">
+                    <a id="modal-artist-link" href="#" style="font-size: 0.9rem; color: var(--accent-blue); text-decoration: underline;">Ver perfil del artista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN Y DATOS (EDITAR AQUÍ)
+        // ==========================================
+        
+        const CONFIG = {
+            whatsapp: "5491159442288", // Número con código de país (sin + ni espacios)
+            instagram: "https://instagram.com/tu_cuenta",
+            email: "hola@terraefuego.com",
+            storeName: "Atelier"
+        };
+
+        // Base de datos de Artistas
+        const ARTISTS = [
+            {
+                id: 1,
+                name: "Verónica Borrell",
+                location: "Puerto Madryn, Chubut",
+                bio: "Verónica trabaja con arcilla blanca y técnicas de quemado oxidante. Sus piezas buscan evocar la calma del mar patagónico a través de texturas orgánicas.",
+                photo: "https://placehold.co/600x600/EDE4D3/4A3728?text=Veronica",
+                social: "https://instagram.com/veronica_ceramistaficticia"
+            },
+            {
+                id: 2,
+                name: "Ceramista Invitado 1",
+                location: "Buenos Aires, CABA",
+                bio: "Especialista en cerámica utilitaria de alta resistencia. Sus formas son geométricas y sus colores vibrantes.",
+                photo: "https://placehold.co/600x600/EDE4D3/4A3728?text=Artista+1",
+                social: "https://instagram.com/artista1"
+            },
+            {
+                id: 3,
+                name: "Ceramista Invitado 2",
+                location: "Mar del Plata, Buenos Aires",
+                bio: "Piezas decorativas y escultóricas inspiradas en la naturaleza marina. Esmaltes naturales y rústicos.",
+                photo: "https://placehold.co/600x600/EDE4D3/4A3728?text=Artista+2",
+                social: "https://instagram.com/artista2"
+            }
+        ];
+
+        // Base de datos de Productos
+        const PRODUCTS = [
+            // Obra Verónica
+            { id: 101, artistId: 1, name: "Taza 'Amanecer'", category: "Tazas", price: 12500, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Taza+Madryn", desc: "Taza de arcilla blanca con esmalte translúcido. Ideal para infusiones.", measures: "10x12cm", materials: "Arcilla Blanca, Esmalte Silicato", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 102, artistId: 1, name: "Plato hondo 'Olas'", category: "Platos", price: 18000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Plato+Olas", desc: "Textura rugosa que imita la arena. Pieza única.", measures: "22cm diámetro", materials: "Arcilla Roja", stock: "Única", care: "Manual" },
+            { id: 103, artistId: 1, name: "Jarrón 'Viento'", category: "Jarrones", price: 25000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Jarron", desc: "Forma orgánica alargada.", measures: "30x15cm", materials: "Gres", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 104, artistId: 1, name: "Set Café (2)", category: "Sets", price: 22000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Set+Cafe", desc: "Dos tacitas de café con plato auxiliar.", measures: "Varia", materials: "Arcilla Blanca", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 105, artistId: 1, name: "Maceta 'Cactus'", category: "Macetas", price: 8500, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Maceta", desc: "Drenaje perfecto para suculentas.", measures: "10x10cm", materials: "Gres", stock: "Agotada", care: "Exterior" },
+            { id: 106, artistId: 1, name: "Lámpara Mesa", category: "Decoración", price: 35000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Lampara", desc: "Cuerpo cerámico con base de latón.", measures: "25x20cm", materials: "Gres, Latón", stock: "Única", care: "Pano seco" },
+            
+            // Obra Invitado 1
+            { id: 201, artistId: 2, name: "Taza Geométrica", category: "Tazas", price: 14000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Geometrica", desc: "Líneas limpias y color azul intenso.", measures: "12x12cm", materials: "Gres", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 202, artistId: 2, name: "Bowl Minimal", category: "Bowls", price: 11000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Bowl", desc: "Forma pura.", measures: "18cm", materials: "Porcelana", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 203, artistId: 2, name: "Plato Fondo", category: "Platos", price: 16500, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Plato+Fondo", desc: "Ideal para pastas.", measures: "24cm", materials: "Gres", stock: "Agotada", care: "Lavavajillas Sí" },
+
+            // Obra Invitado 2
+            { id: 301, artistId: 3, name: "Jarrón Marino", category: "Jarrones", price: 28000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Marino", desc: "Textura de corales.", measures: "35cm", materials: "Arcilla Roja", stock: "Única", care: "Pano seco" },
+            { id: 302, artistId: 3, name: "Maceta Colgante", category: "Macetas", price: 9500, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Colgante", desc: "Con cuerda de cáñamo.", measures: "15x15cm", materials: "Gres", stock: "Disponible", care: "Exterior" },
+            { id: 303, artistId: 3, name: "Set Decorativo", category: "Sets", price: 40000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Set+Deco", desc: "Tres piezas de colección.", measures: "Varia", materials: "Gres", stock: "Disponible", care: "Pano seco" }
+        ];
+
+        // ==========================================
+        // LÓGICA DE LA APLICACIÓN
+        // ==========================================
+
+        const app = {
+            init() {
+                this.renderArtists();
+                this.renderCatalog();
+                this.setupFilters();
+                this.setupMobileMenu();
+                this.setupContactForm();
+                document.getElementById('year').textContent = new Date().getFullYear();
+            },
+
+            // Formateador de moneda
+            formatPrice(price) {
+                return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(price);
+            },
+
+            // Renderizar lista de artistas
+            renderArtists() {
+                const grid = document.getElementById('artists-grid');
+                grid.innerHTML = ARTISTS.map(artist => `
+                    <div class="artist-card">
+                        <img src="${artist.photo}" alt="${artist.name}" class="artist-img">
+                        <div class="artist-info">
+                            <h3>${artist.name}</h3>
+                            <span class="artist-loc">📍 ${artist.location}</span>
+                            <p style="font-size: 0.9rem; margin: 0.5rem 0 1rem 0; color: #666;">${artist.bio.substring(0, 60)}...</p>
+                            <button class="btn btn-secondary" onclick="app.showArtistProfile(${artist.id})">Ver obras</button>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            // Filtrar y renderizar catálogo
+            renderCatalog(filteredProducts = PRODUCTS) {
+                const grid = document.getElementById('catalog-grid');
+                const noResults = document.getElementById('no-results');
+
+                if (filteredProducts.length === 0) {
+                    grid.innerHTML = '';
+                    noResults.classList.remove('hidden');
+                    return;
+                }
+
+                noResults.classList.add('hidden');
+                grid.innerHTML = filteredProducts.map(product => {
+                    const artist = ARTISTS.find(a => a.id === product.artistId);
+                    let badge = '';
+                    if (product.stock === 'Única') badge = `<span class="badge badge-unique">Pieza Única</span>`;
+                    if (product.stock === 'Agotada') badge = `<span class="badge badge-sold">Agotado</span>`;
+
+                    return `
+                        <div class="product-card" onclick="app.openModal(${product.id})">
+                            <div class="product-img-wrapper">
+                                ${badge}
+                                <img src="${product.image}" alt="${product.name}" class="product-img">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-title">${product.name}</div>
+                                <div class="product-artist">${artist.name}</div>
+                                <div class="product-price">${this.formatPrice(product.price)}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            },
+
+            // Mostrar perfil de artista
+            showArtistProfile(artistId) {
+                const artist = ARTISTS.find(a => a.id === artistId);
+                const artistProducts = PRODUCTS.filter(p => p.artistId === artistId);
+
+                document.getElementById('artistas').classList.add('hidden');
+                document.getElementById('catalogo').classList.add('hidden');
+                
+                // Llenar datos perfil
+                document.getElementById('profile-img').src = artist.photo;
+                document.getElementById('profile-name').textContent = artist.name;
+                document.getElementById('profile-loc').textContent = artist.location;
+                document.getElementById('profile-bio').textContent = artist.bio;
+                document.getElementById('profile-social').href = artist.social;
+
+                // Llenar grilla obras
+                const worksGrid = document.getElementById('artist-works-grid');
+                worksGrid.innerHTML = artistProducts.map(p => `
+                     <div class="product-card" onclick="app.openModal(${p.id})">
+                        <div class="product-img-wrapper">
+                             <img src="${p.image}" alt="${p.name}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title">${p.name}</div>
+                            <div class="product-price">${this.formatPrice(p.price)}</div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Mostrar sección perfil
+                document.getElementById('artist-profile').classList.remove('hidden');
+                window.scrollTo(0, 0);
+            },
+
+            // Volver a inicio (Home)
+            goHome() {
+                document.getElementById('artist-profile').classList.add('hidden');
+                document.getElementById('artistas').classList.remove('hidden');
+                document.getElementById('catalogo').classList.remove('hidden');
+                window.scrollTo(0, 0);
+                this.renderCatalog(); // Reset filters
+            },
+
+            // Abrir Modal de detalle
+            openModal(productId) {
+                const product = PRODUCTS.find(p => p.id === productId);
+                const artist = ARTISTS.find(a => a.id === product.artistId);
+
+                document.getElementById('modal-img').src = product.image;
+                document.getElementById('modal-category').textContent = product.category;
+                document.getElementById('modal-title').textContent = product.name;
+                document.getElementById('modal-price').textContent = this.formatPrice(product.price);
+                document.getElementById('modal-desc').textContent = product.desc;
+                document.getElementById('modal-measures').textContent = product.measures;
+                document.getElementById('modal-materials').textContent = product.materials;
+                document.getElementById('modal-care').textContent = product.care;
+                
+                // Stock badge
+                const stockEl = document.getElementById('modal-stock');
+                stockEl.textContent = product.stock;
+                stockEl.style.color = product.stock === 'Agotada' ? 'red' : 'green';
+
+                // Links
+                const waText = `Hola! Me interesa la pieza "${product.name}" de ${artist.name}.`;
+                document.getElementById('modal-wa-link').href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(waText)}`;
+                
+                document.getElementById('modal-artist-link').onclick = (e) => {
+                    e.preventDefault();
+                    this.closeModal();
+                    this.showArtistProfile(artist.id);
+                };
+
+                const modal = document.getElementById('product-modal');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Evitar scroll detras
+            },
+
+            closeModal() {
+                const modal = document.getElementById('product-modal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            },
+
+            // Configurar Filtros
+            setupFilters() {
+                const searchInput = document.getElementById('search-input');
+                const filterArtist = document.getElementById('filter-artist');
+                const filterCategory = document.getElementById('filter-category');
+                const sortPrice = document.getElementById('sort-price');
+
+                // Llenar select de artistas
+                const artistOptions = ARTISTS.map(a => `<option value="${a.id}">${a.name}</option>`).join('');
+                filterArtist.innerHTML = `<option value="all">Todos los artistas</option>` + artistOptions;
+
+                const applyFilters = () => {
+                    let result = [...PRODUCTS];
+
+                    // Filtro Texto
+                    const text = searchInput.value.toLowerCase();
+                    if (text) {
+                        result = result.filter(p => p.name.toLowerCase().includes(text) || p.desc.toLowerCase().includes(text));
+                    }
+
+                    // Filtro Artista
+                    const artistVal = filterArtist.value;
+                    if (artistVal !== 'all') {
+                        result = result.filter(p => p.artistId == artistVal);
+                    }
+
+                    // Filtro Categoría
+                    const catVal = filterCategory.value;
+                    if (catVal !== 'all') {
+                        result = result.filter(p => p.category === catVal);
+                    }
+
+                    // Orden
+                    const sortVal = sortPrice.value;
+                    if (sortVal === 'asc') {
+                        result.sort((a, b) => a.price - b.price);
+                    } else if (sortVal === 'desc') {
+                        result.sort((a, b) => b.price - a.price);
+                    }
+
+                    this.renderCatalog(result);
+                };
+
+                searchInput.addEventListener('input', applyFilters);
+                filterArtist.addEventListener('change', applyFilters);
+                filterCategory.addEventListener('change', applyFilters);
+                sortPrice.addEventListener('change', applyFilters);
+            },
+
+            // Menú Hamburguesa
+            setupMobileMenu() {
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+                
+                hamburger.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+                });
+
+                // Cerrar menú al hacer click en link
+                document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    hamburger.textContent = '☰';
+                }));
+            },
+
+            // Formulario Contacto -> WhatsApp
+            setupContactForm() {
+                const form = document.getElementById('contact-form');
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('contact-name').value;
+                    const msg = document.getElementById('contact-message').value;
+                    
+                    const waText = `Hola, soy ${name}. ${msg}`;
+                    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(waText)}`, '_blank');
+                    form.reset();
+                });
+            }
+        };
+
+        // Iniciar App
+        document.addEventListener('DOMContentLoaded', () => app.init());
+        
+        // Cerrar modal al click afuera
+        document.getElementById('product-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'product-modal') app.closeModal();
+        });
+
+    </script>
+    
+    <!-- 
+    ========================================================================
+    INSTRUCCIONES PARA EDITAR (PARA NO PROGRAMADORES)
+    ========================================================================
+    
+    1. AGREGAR UN CERAMISTA:
+       Buscá la variable "const ARTISTS = [...]" en el script.
+       Copiá un bloque entre llaves { ... } y pegalo abajo.
+       Cambiá: id (número nuevo), name, location, bio, photo (link imagen), social (link insta).
+
+    2. AGREGAR UNA PIEZA:
+       Buscá la variable "const PRODUCTS = [...]" en el script.
+       Copiá un bloque entre llaves { ... } y pegolo abajo.
+       IMPORTANTE: El "artistId" debe coincidir con el ID del ceramista (ej: 1 es Verónica).
+       Cambiá: id (número nuevo), name, category, price (solo números), image (link foto), etc.
+
+    3. CAMBIAR DATOS DE CONTACTO:
+       Buscá la variable "const CONFIG".
+       Cambiá el número de "whatsapp" (formato internacional sin +), el instagram y el email.
+
+    4. CAMBIAR FOTOS:
+       Reemplazá las URL que empiezan con "https://placehold.co/..." por el link directo de tus imágenes.
+    ========================================================================
+    -->
+</body>
+</html>
+```
