@@ -109,15 +109,16 @@
 
         /* HERO */
         #inicio {
-            height: 35vh;
+            height: auto;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             text-align: center;
             background-image: linear-gradient(rgba(245, 239, 230, 0.8), rgba(245, 239, 230, 0.8));
             background-size: cover;
             background-position: center;
-            margin-top: 60px;
+            margin-top: 78px;
+            padding-top: 1rem;
             padding-bottom: 2px;  /* Disminuye el espaciado interno inferior */
   margin-bottom: 2px;   /* Disminuye el margen exterior hacia "Nuestros Artistas" */
         }
@@ -125,6 +126,7 @@
         .hero-btns { gap: 1rem; margin-top: 1rem; display: flex; justify-content: center; flex-wrap: wrap; }
 
         /* ARTISTS */
+        #artistas { padding-top: 3rem; }
         .artist-card {
             background-color: var(--bg-card);
             border-radius: var(--radius);
@@ -549,7 +551,7 @@
                 name: "Verónica Borrell",
                 location: "Puerto Madryn, Chubut",
                 bio: "Verónica trabaja con arcilla blanca y técnicas de quemado oxidante. Sus piezas buscan evocar la calma del mar patagónico a través de texturas orgánicas.",
-                photo: "https://placehold.co/600x600/EDE4D3/4A3728?text=Veronica",
+                photo: "Vero/v1.JPG",
                 social: "https://instagram.com/veronica_ceramistaficticia"
             },
             {
@@ -665,6 +667,7 @@
                 const artist = ARTISTS.find(a => a.id === artistId);
                 const artistProducts = PRODUCTS.filter(p => p.artistId === artistId);
 
+                document.getElementById('inicio').classList.add('hidden');
                 document.getElementById('artistas').classList.add('hidden');
                 document.getElementById('catalogo').classList.add('hidden');
                 
@@ -697,6 +700,7 @@
             // Volver a inicio (Home)
             goHome() {
                 document.getElementById('artist-profile').classList.add('hidden');
+                document.getElementById('inicio').classList.remove('hidden');
                 document.getElementById('artistas').classList.remove('hidden');
                 document.getElementById('catalogo').classList.remove('hidden');
                 window.scrollTo(0, 0);
