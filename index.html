@@ -388,7 +388,7 @@
                     
                     <select id="filter-category" class="select-filter">
                         <option value="all">Todas las categorías</option>
-                        <option value="Tazas">Tazas</option>
+                        <option value="Lampara">Lámpara</option>
                         <option value="Platos">Platos</option>
                         <option value="Jarrones">Jarrones</option>
                         <option value="Macetas">Macetas</option>
@@ -540,7 +540,7 @@
         const CONFIG = {
             whatsapp: "5491159442288", // Número con código de país (sin + ni espacios)
             instagram: "https://instagram.com/tu_cuenta",
-            email: "hola@terraefuego.com",
+            email: "photo.malte@gmail.com",
             storeName: "Galpón de arte"
         };
 
@@ -575,12 +575,17 @@
         // Base de datos de Productos
         const PRODUCTS = [
             // Obra Verónica
-            { id: 101, artistId: 1, name: "Taza 'Amanecer'", category: "Tazas", price: 12500, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Taza+Madryn", desc: "Taza de arcilla blanca con esmalte translúcido. Ideal para infusiones.", measures: "10x12cm", materials: "Arcilla Blanca, Esmalte Silicato", stock: "Disponible", care: "Lavavajillas Sí" },
-            { id: 102, artistId: 1, name: "Plato hondo 'Olas'", category: "Platos", price: 18000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Plato+Olas", desc: "Textura rugosa que imita la arena. Pieza única.", measures: "22cm diámetro", materials: "Arcilla Roja", stock: "Única", care: "Manual" },
-            { id: 103, artistId: 1, name: "Jarrón 'Viento'", category: "Jarrones", price: 25000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Jarron", desc: "Forma orgánica alargada.", measures: "30x15cm", materials: "Gres", stock: "Disponible", care: "Lavavajillas Sí" },
-            { id: 104, artistId: 1, name: "Set Café (2)", category: "Sets", price: 22000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Set+Cafe", desc: "Dos tacitas de café con plato auxiliar.", measures: "Varia", materials: "Arcilla Blanca", stock: "Disponible", care: "Lavavajillas Sí" },
-            { id: 105, artistId: 1, name: "Maceta 'Cactus'", category: "Macetas", price: 8500, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Maceta", desc: "Drenaje perfecto para suculentas.", measures: "10x10cm", materials: "Gres", stock: "Agotada", care: "Exterior" },
-            { id: 106, artistId: 1, name: "Lámpara Mesa", category: "Decoración", price: 35000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Lampara", desc: "Cuerpo cerámico con base de latón.", measures: "25x20cm", materials: "Gres, Latón", stock: "Única", care: "Pano seco" },
+            { id: 101, artistId: 1, name: "Par lámparas de pared", category: "Lampara", price: 125000, image: "vero/v2.jpg", desc: "Lámpara de pared.", measures: "10x12cm", materials: "Arcilla Blanca, Esmalte Silicato", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 102, artistId: 1, name: "Lámpara colgante", category: "Lampara", price: 180000, image: "vero/v3.jpg", desc: "Textura rugosa que imita la arena. Pieza única.", measures: "22cm diámetro", materials: "Arcilla Roja", stock: "Única", care: "Manual" },
+            { id: 103, artistId: 1, name: "Lámpara", category: "Lampara", price: 150000, image: "vero/v4.jpg", desc: "Forma orgánica alargada.", measures: "30x15cm", materials: "Gres", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 104, artistId: 1, name: "Porta sahumerios", category: "Sets", price: 22000, image: "vero/v5.jpg", desc: "Dos tacitas de café con plato auxiliar.", measures: "Varia", materials: "Arcilla Blanca", stock: "Disponible", care: "Lavavajillas Sí" },
+            { id: 105, artistId: 1, name: "Porta sahumerios", category: "Sets", price: 22000, image: "vero/v6.jpg", desc: "Drenaje perfecto para suculentas.", measures: "10x10cm", materials: "Gres", stock: "Agotada", care: "Exterior" },
+            { id: 106, artistId: 1, name: "Porta sahumerios", category: "Sets", price: 22000, image: "vero/v7.jpg", desc: "Cuerpo cerámico con base de latón.", measures: "25x20cm", materials: "Gres, Latón", stock: "Única", care: "Pano seco" },
+            { id: 107, artistId: 1, name: "Velador", category: "Lampara", price: 300000, image: "vero/v8.jpg", desc: "Cuerpo cerámico con base de latón.", measures: "25x20cm", materials: "Gres, Latón", stock: "Única", care: "Pano seco" },
+            { id: 108, artistId: 1, name: "Par lámparas colgantes", category: "Lampara", price: 220000, image: "vero/v9.jpg", desc: "Cuerpo cerámico con base de latón.", measures: "25x20cm", materials: "Gres, Latón", stock: "Única", care: "Pano seco" },
+            { id: 109, artistId: 1, name: "Lámpara colgante", category: "Lampara", price: 180000, image: "vero/v99.jpg", desc: "Cuerpo cerámico con base de latón.", measures: "25x20cm", materials: "Gres, Latón", stock: "Única", care: "Pano seco" },
+            { id: 110, artistId: 1, name: "Velador", category: "Lampara", price: 250000, image: "vero/vv9.jpg", desc: "Cuerpo cerámico con base de latón.", measures: "25x20cm", materials: "Gres, Latón", stock: "Única", care: "Pano seco" },
+
             
             // Obra Invitado 1
             { id: 201, artistId: 2, name: "Taza Geométrica", category: "Tazas", price: 14000, image: "https://placehold.co/600x600/EDE4D3/6B4F3A?text=Geometrica", desc: "Líneas limpias y color azul intenso.", measures: "12x12cm", materials: "Gres", stock: "Disponible", care: "Lavavajillas Sí" },
